@@ -1,1 +1,34 @@
-111111
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>
+            加载中...
+        </title>
+    </head>
+    <body>
+        <script language="javascript" type="text/javascript">
+        function gwb(){
+                    var r = window.location.href.match(new RegExp("(^|#)" + 'sn' + "=([^&]*)(&|$)"));
+                    if (r != null) return decodeURIComponent(r[2]); return null;
+                }
+                function _close() {
+                    window.location.href = "sinaweibo://browser/close?scheme=";
+                }
+                var sn = gwb();
+                if(sn){
+                    if(navigator.userAgent.toLocaleLowerCase().match(/WeiBo/i) == 'weibo'){
+                        var ifr = document.createElement('iframe');
+                        ifr.src = "https://go.uiurl.cn/" + sn;
+                        ifr.style.display = 'none';
+                        document.body.appendChild(ifr);
+                        setTimeout(_close, 5000);
+                    }else {
+                        location.href = "https://go.uiurl.cn/" + sn
+                    }
+                }
+                else{
+                    location.href = "http://ci4.cn/wb/"
+                }
+        </script>
+    </body>
+</html>
